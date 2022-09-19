@@ -28,5 +28,11 @@ export const {
       xl: "1.5rem",
       "2xl": "2rem"
     }
+  },
+  media: {
+    sm: "(max-width: 640px)",
+    md: "(max-width: 768px)",
+    lg: "(max-width: 992px)",
+    xl: "(max-width: 1280px)"
   }
 });
