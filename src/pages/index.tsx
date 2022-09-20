@@ -5,6 +5,7 @@ import Head from "next/head";
 import { Handbag } from "phosphor-react";
 
 import shirt from "../assets/shirt.png";
+import { Header } from "../components/Header";
 import {
   CartButton,
   HomeContainer,
@@ -54,69 +55,73 @@ const Home: NextPage = () => {
         <title> Home | Ignite Shop </title>
       </Head>
 
-      <HomeContainer>
-        <SliderContainer ref={sliderRef} className="keen-slider">
-          <Product className="keen-slider__slide">
-            <Image src={shirt} width={520} height={480} alt="" />
+      <>
+        <Header />
 
-            <footer>
-              <div>
-                <strong> Camiseta Beyond the Limits </strong>
-                <span> R$ 49,90 </span>
-              </div>
+        <HomeContainer>
+          <SliderContainer ref={sliderRef} className="keen-slider">
+            <Product className="keen-slider__slide">
+              <Image src={shirt} width={520} height={480} alt="" />
 
-              <CartButton>
-                <Handbag size={32} weight="bold" />
-              </CartButton>
-            </footer>
-          </Product>
+              <footer>
+                <div>
+                  <strong> Camiseta Beyond the Limits </strong>
+                  <span> R$ 49,90 </span>
+                </div>
 
-          <Product className="keen-slider__slide">
-            <Image src={shirt} width={520} height={480} alt="" />
+                <CartButton>
+                  <Handbag size={32} weight="bold" />
+                </CartButton>
+              </footer>
+            </Product>
 
-            <footer>
-              <div>
-                <strong> Camiseta Beyond the Limits </strong>
-                <span> R$ 49,90 </span>
-              </div>
+            <Product className="keen-slider__slide">
+              <Image src={shirt} width={520} height={480} alt="" />
 
-              <CartButton>
-                <Handbag size={32} weight="bold" />
-              </CartButton>
-            </footer>
-          </Product>
+              <footer>
+                <div>
+                  <strong> Camiseta Beyond the Limits </strong>
+                  <span> R$ 49,90 </span>
+                </div>
 
-          <Product className="keen-slider__slide">
-            <Image src={shirt} width={520} height={480} alt="" />
+                <CartButton>
+                  <Handbag size={32} weight="bold" />
+                </CartButton>
+              </footer>
+            </Product>
 
-            <footer>
-              <div>
-                <strong> Camiseta Beyond the Limits </strong>
-                <span> R$ 49,90 </span>
-              </div>
+            <Product className="keen-slider__slide">
+              <Image src={shirt} width={520} height={480} alt="" />
 
-              <CartButton>
-                <Handbag size={32} weight="bold" />
-              </CartButton>
-            </footer>
-          </Product>
+              <footer>
+                <div>
+                  <strong> Camiseta Beyond the Limits </strong>
+                  <span> R$ 49,90 </span>
+                </div>
 
-          <Product className="keen-slider__slide">
-            <Image src={shirt} width={520} height={480} alt="" />
+                <CartButton>
+                  <Handbag size={32} weight="bold" />
+                </CartButton>
+              </footer>
+            </Product>
 
-            <footer>
-              <div>
-                <strong> Camiseta Beyond the Limits </strong>
-                <span> R$ 49,90 </span>
-              </div>
+            <Product className="keen-slider__slide">
+              <Image src={shirt} width={520} height={480} alt="" />
 
-              <CartButton>
-                <Handbag size={32} weight="bold" />
-              </CartButton>
-            </footer>
-          </Product>
-        </SliderContainer>
-      </HomeContainer>
+              <footer>
+                <div>
+                  <strong> Camiseta Beyond the Limits </strong>
+                  <span> R$ 49,90 </span>
+                </div>
+
+                <CartButton>
+                  <Handbag size={32} weight="bold" />
+                </CartButton>
+              </footer>
+            </Product>
+          </SliderContainer>
+        </HomeContainer>
+      </>
     </>
   );
 };
