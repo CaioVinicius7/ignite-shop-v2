@@ -6,9 +6,14 @@ export const HomeContainer = styled("main", {
   maxWidth: "calc(100vw - ((100vw - 1180px) / 2))",
   marginLeft: "auto",
   minHeight: 656,
+  marginBottom: "1rem"
+});
+
+export const SliderContainer = styled("section", {
+  marginLeft: "0",
 
   "@xl": {
-    paddingLeft: "4rem"
+    marginLeft: "2rem"
   }
 });
 
@@ -33,6 +38,7 @@ export const Product = styled("div", {
     left: "0.25rem",
     right: "0.25rem",
     padding: "1.5rem",
+    height: "6rem",
 
     backgroundColor: "rgba(0, 0, 0, 0.6)",
     borderRadius: 6,
@@ -68,6 +74,22 @@ export const Product = styled("div", {
     footer: {
       transform: "translateY(0%)",
       opacity: 1
+    }
+  },
+
+  "@md": {
+    footer: {
+      transform: "translateY(0%)",
+      opacity: 1,
+      height: "7.75rem",
+
+      strong: {
+        fontSize: "$md"
+      },
+
+      span: {
+        fontSize: "$lg"
+      }
     }
   }
 });

@@ -11,7 +11,7 @@ export const HeaderContainer = styled("header", {
   alignItems: "center",
 
   "@xl": {
-    padding: "2rem 4rem"
+    padding: "2rem 2.75rem"
   }
 });
 
