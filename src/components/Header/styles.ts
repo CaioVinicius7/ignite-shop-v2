@@ -32,6 +32,33 @@ export const CartButton = styled("button", {
   justifyContent: "center",
 
   "&:hover": {
-    filter: "brightness(1.25)"
+    background: "#28282d",
+    color: "#bbbbca",
+
+    span: {
+      background: "#00a977"
+    }
+  },
+
+  span: {
+    position: "absolute",
+
+    background: "$green500",
+    borderRadius: "50%",
+    width: "2.15rem",
+    height: "2.15rem",
+    color: "$white",
+    fontWeight: "bold",
+
+    marginTop: "-2.6rem",
+    marginRight: "-2.6rem",
+
+    border: "5px solid $gray900",
+
+    transition: "0.2s",
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
