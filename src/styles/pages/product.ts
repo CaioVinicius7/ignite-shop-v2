@@ -7,7 +7,7 @@ export const ProductContainer = styled("main", {
   gap: "4rem",
 
   maxWidth: 1180,
-  margin: "0 auto",
+  margin: "0 auto 1rem",
 
   "@xl": {
     padding: "0 2.75rem"

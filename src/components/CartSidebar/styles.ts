@@ -88,6 +88,10 @@ export const CardSideNavContainer = styled("aside", {
     width: "100vw"
   },
 
+  "@sm": {
+    transition: "0s"
+  },
+
   variants: {
     isVisible: {
       false: {
