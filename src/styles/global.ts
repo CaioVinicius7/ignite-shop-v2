@@ -10,7 +10,17 @@ export const globalStyles = globalCss({
   body: {
     "-webkit-font-smoothing": "antialised",
     backgroundColor: "$gray900",
-    color: "$gray100"
+    color: "$gray100",
+
+    "&::-webkit-scrollbar": {
+      width: 10,
+      background: "#2e2e2e"
+    },
+
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: 6,
+      background: "#3c3c3c"
+    }
   },
 
   "body, input, textarea, button": {

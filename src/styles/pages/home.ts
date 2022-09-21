@@ -82,6 +82,7 @@ export const Product = styled("div", {
       transform: "translateY(0%)",
       opacity: 1,
       height: "7.75rem",
+      transition: "0s",
 
       strong: {
         fontSize: "$md"
