@@ -89,8 +89,8 @@ export const CardSideNavContainer = styled("aside", {
   },
 
   variants: {
-    isHidden: {
-      true: {
+    isVisible: {
+      false: {
         transform: "translateX(100%)"
       }
     }
@@ -150,12 +150,30 @@ export const DetailsContainer = styled("div", {
     whiteSpace: "nowrap"
   },
 
-  strong: {
-    fontSize: "$md",
-    lineHeight: "160%"
+  div: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+
+    strong: {
+      fontSize: "$md"
+    },
+
+    span: {
+      fontSize: "0.75rem",
+      color: "$gray100",
+      cursor: "default",
+      width: "auto",
+      alignContent: "end",
+      textAlign: "right",
+
+      "&:hover": {
+        filter: "brightness(1)"
+      }
+    }
   },
 
   span: {
+    fontSize: "1rem",
     color: "$green500",
     fontWeight: "bold",
     cursor: "pointer",
@@ -179,5 +197,19 @@ export const DetailsContainer = styled("div", {
     h2: {
       maxWidth: "15ch"
     }
+  }
+});
+
+export const EmptyCart = styled("div", {
+  marginTop: "4rem",
+
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+
+  strong: {
+    fontSize: "$lg",
+    marginTop: "1rem"
   }
 });

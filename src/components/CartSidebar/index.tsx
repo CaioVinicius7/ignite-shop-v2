@@ -1,74 +1,83 @@
 import Image from "next/future/image";
 import Link from "next/link";
-import { X } from "phosphor-react";
-import { useContext } from "react";
+import { Handbag, X } from "phosphor-react";
+import { useShoppingCart } from "use-shopping-cart";
 
 import shirt from "../../assets/shirt.png";
-import { CartSideBarContext } from "../../contexts/CartSideBarContext";
 import {
   CardSideNavContainer,
   CloseButton,
   DetailsContainer,
+  EmptyCart,
   ImageContainer,
   ProductContainer
 } from "./styles";
 
 function CartSideBar() {
-  const { isHidden, changeVisibility } = useContext(CartSideBarContext);
+  const {
+    handleCartClick,
+    shouldDisplayCart,
+    cartDetails,
+    removeItem,
+    cartCount,
+    formattedTotalPrice
+  } = useShoppingCart();
+
+  const cartIsEmpty = cartCount === 0;
+
+  const cartList = Object.values(cartDetails ?? {}).map((cardItem) => cardItem);
 
   return (
     <>
-      <CardSideNavContainer isHidden={isHidden}>
-        <CloseButton onClick={changeVisibility}>
+      <CardSideNavContainer isVisible={shouldDisplayCart}>
+        <CloseButton onClick={handleCartClick}>
           <X size={28} weight="bold" />
         </CloseButton>
 
         <h1> Sacola de compras </h1>
 
         <main>
-          <ProductContainer>
-            <Link href="/product/1" prefetch={false}>
-              <ImageContainer>
-                <Image src={shirt} width={95} height={95} alt="" />
-              </ImageContainer>
-            </Link>
+          {cartIsEmpty ? (
+            <EmptyCart>
+              <Handbag size={64} />
+              <strong> Carrinho vazio! </strong>
+            </EmptyCart>
+          ) : (
+            cartList.map((cardItem) => (
+              <ProductContainer key={cardItem.id}>
+                <Link href="/product/1" prefetch={false}>
+                  <ImageContainer>
+                    <Image src={shirt} width={95} height={95} alt="" />
+                  </ImageContainer>
+                </Link>
 
-            <DetailsContainer>
-              <h2>Camiseta Beyond the Limits</h2>
-              <strong>R$ 79,90</strong>
+                <DetailsContainer>
+                  <h2>{cardItem.name}</h2>
+                  <div>
+                    <strong>{cardItem.formattedValue}</strong>
 
-              <span>Remover</span>
-            </DetailsContainer>
-          </ProductContainer>
+                    <span>Quant: {cardItem.quantity}</span>
+                  </div>
 
-          <ProductContainer>
-            <Link href="/product/1" prefetch={false}>
-              <ImageContainer>
-                <Image src={shirt} width={95} height={95} alt="" />
-              </ImageContainer>
-            </Link>
-
-            <DetailsContainer>
-              <h2>Camiseta Beyond the Limits</h2>
-              <strong>R$ 79,90</strong>
-
-              <span>Remover</span>
-            </DetailsContainer>
-          </ProductContainer>
+                  <span onClick={() => removeItem(cardItem.id)}>Remover</span>
+                </DetailsContainer>
+              </ProductContainer>
+            ))
+          )}
         </main>
 
         <footer>
           <div>
             <span> Quantidade </span>
-            <span> 2 itens </span>
+            <span> {cartCount} itens </span>
           </div>
 
           <div>
             <strong> Valor total </strong>
-            <strong> R$ 159,80 </strong>
+            <strong> {formattedTotalPrice} </strong>
           </div>
 
-          <button>Finalizar compra</button>
+          <button disabled={cartIsEmpty}>Finalizar compra</button>
         </footer>
       </CardSideNavContainer>
     </>
