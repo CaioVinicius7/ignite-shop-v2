@@ -12,6 +12,7 @@ import {
   ProductContainer,
   ProductDetails
 } from "../../styles/pages/product";
+import { SkeletonLoading } from "./components/Skeleton";
 
 interface ProductProps {
   product: {
@@ -30,7 +31,7 @@ export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter();
 
   if (isFallback) {
-    return <p> Carregando... </p>;
+    return <SkeletonLoading />;
   }
 
   return (
