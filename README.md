@@ -38,9 +38,11 @@ Esse é o quarto desafio da trilha de react do ignite de 2022 da [Rocketseat](ht
 
 - Responsivo: ✅
 
-- Hospedado: ❌
+- Hospedado: ✅
 
 [Template no Figma](<https://www.figma.com/file/XZIcRuhshikPlXRDZg2s6h/Ignite-Shop-2.0-(Copy)?node-id=0%3A1>)
+
+[Clique aqui para acessar o projeto](ignite-shop-v2-r9y4.vercel.app)
 
 <br>
 
