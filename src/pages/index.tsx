@@ -25,6 +25,7 @@ interface HomeProps {
     imageUrl: string;
     price: string;
     priceInCents: number;
+    defaultPriceId: string;
   }[];
 }
 
@@ -97,7 +98,9 @@ export default function Home({ products }: HomeProps) {
                         addItem({
                           id: product.id,
                           name: product.name,
+                          imageUrl: product.imageUrl,
                           price: product.priceInCents,
+                          priceId: product.defaultPriceId,
                           currency: "BRL"
                         });
                       }}
@@ -133,7 +136,8 @@ export const getStaticProps: GetStaticProps = async () => {
       name: product.name,
       imageUrl: product.images[0],
       price: priceFormatted,
-      priceInCents: price.unit_amount
+      priceInCents: price.unit_amount,
+      defaultPriceId: price.id
     };
   });
 

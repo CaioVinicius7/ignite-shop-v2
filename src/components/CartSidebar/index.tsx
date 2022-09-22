@@ -1,9 +1,10 @@
+import axios from "axios";
 import Image from "next/future/image";
 import Link from "next/link";
 import { Handbag, X } from "phosphor-react";
+import { useState } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 
-import shirt from "../../assets/shirt.png";
 import {
   CardSideNavContainer,
   CloseButton,
@@ -14,6 +15,8 @@ import {
 } from "./styles";
 
 function CartSideBar() {
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
+    useState(false);
   const {
     handleCartClick,
     shouldDisplayCart,
@@ -26,6 +29,30 @@ function CartSideBar() {
   const cartIsEmpty = cartCount === 0;
 
   const cartList = Object.values(cartDetails ?? {}).map((cardItem) => cardItem);
+
+  async function handleBuyProducts() {
+    const productsToCheckout = cartList.map((product) => {
+      return {
+        price: product.priceId,
+        quantity: product.quantity
+      };
+    });
+
+    try {
+      setIsCreatingCheckoutSession(true);
+
+      const response = await axios.post("/api/checkout", {
+        products: productsToCheckout
+      });
+
+      const { checkoutUrl } = response.data;
+
+      window.location.href = checkoutUrl;
+    } catch (err) {
+      setIsCreatingCheckoutSession(false);
+      alert("Falha ao redirecionar ao checkout!");
+    }
+  }
 
   return (
     <>
@@ -45,9 +72,14 @@ function CartSideBar() {
           ) : (
             cartList.map((cardItem) => (
               <ProductContainer key={cardItem.id}>
-                <Link href="/product/1" prefetch={false}>
+                <Link href={`/product/${cardItem.id}`} prefetch={false}>
                   <ImageContainer>
-                    <Image src={shirt} width={95} height={95} alt="" />
+                    <Image
+                      src={cardItem.imageUrl}
+                      width={95}
+                      height={95}
+                      alt=""
+                    />
                   </ImageContainer>
                 </Link>
 
@@ -77,7 +109,12 @@ function CartSideBar() {
             <strong> {formattedTotalPrice} </strong>
           </div>
 
-          <button disabled={cartIsEmpty}>Finalizar compra</button>
+          <button
+            disabled={cartIsEmpty || isCreatingCheckoutSession}
+            onClick={handleBuyProducts}
+          >
+            Finalizar compra
+          </button>
         </footer>
       </CardSideNavContainer>
     </>

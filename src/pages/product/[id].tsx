@@ -57,8 +57,9 @@ export default function Product({ product }: ProductProps) {
                 addItem({
                   id: product.id,
                   name: product.name,
+                  imageUrl: product.imageUrl,
                   price: product.priceInCents,
-                  price_id: product.defaultPriceId,
+                  priceId: product.defaultPriceId,
                   currency: "BRL"
                 });
               }}
