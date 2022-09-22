@@ -93,6 +93,13 @@ export const Product = styled("div", {
         fontSize: "$lg"
       }
     }
+  },
+
+  "@sm": {
+    img: {
+      width: 250,
+      height: 350
+    }
   }
 });
 

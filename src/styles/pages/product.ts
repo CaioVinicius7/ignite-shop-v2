@@ -51,7 +51,8 @@ export const ImageContainer = styled("div", {
 
   "@sm": {
     img: {
-      width: 220
+      width: 250,
+      height: 350
     }
   }
 });
