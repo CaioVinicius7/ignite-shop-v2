@@ -6,6 +6,7 @@ import Stripe from "stripe";
 import { useShoppingCart } from "use-shopping-cart";
 
 import { Header } from "../../components/Header";
+import { SkeletonLoading } from "../../components/SuccessSkeleton";
 import { stripe } from "../../lib/stripe";
 import {
   ImageContainer,
@@ -13,7 +14,6 @@ import {
   ProductDetails
 } from "../../styles/pages/product";
 import { formatCurrencyBRL } from "../../utils/formatCurrency";
-import { SkeletonLoading } from "./components/Skeleton";
 
 interface ProductProps {
   product: {
