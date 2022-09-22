@@ -1,22 +1,42 @@
+import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import Stripe from "stripe";
 import { useShoppingCart } from "use-shopping-cart";
 
-import shirt from "../../assets/shirt.png";
 import { Header } from "../../components/Header";
+import { stripe } from "../../lib/stripe";
 import {
   ImageContainer,
   ProductContainer,
   ProductDetails
 } from "../../styles/pages/product";
 
-export default function Product() {
+interface ProductProps {
+  product: {
+    id: string;
+    name: string;
+    imageUrl: string;
+    price: string;
+    priceInCents: number;
+    description: string;
+    defaultPriceId: string;
+  };
+}
+
+export default function Product({ product }: ProductProps) {
   const { addItem } = useShoppingCart();
+  const { isFallback } = useRouter();
+
+  if (isFallback) {
+    return <p> Carregando... </p>;
+  }
 
   return (
     <>
       <Head>
-        <title> Produto | Ignite Shop </title>
+        <title> {product.name} | Ignite Shop </title>
       </Head>
 
       <>
@@ -24,27 +44,21 @@ export default function Product() {
 
         <ProductContainer>
           <ImageContainer>
-            <Image src={shirt} width={520} height={480} alt="" />
+            <Image src={product.imageUrl} width={520} height={480} alt="" />
           </ImageContainer>
           <ProductDetails>
-            <h1> Camiseta Beyond the Limits </h1>
-            <span> R$ 49,90 </span>
+            <h1> {product.name} </h1>
+            <span> {product.price} </span>
 
-            <p>
-              Tempus fermentum eget lacus, quis ante. Potenti sit pharetra,
-              ridiculus amet. Bibendum pretium arcu arcu eget viverra at metus
-              donec hendrerit. Rhoncus, nunc, eu at ac.
-            </p>
+            <p>{product.description}</p>
 
             <button
               onClick={() => {
                 addItem({
-                  id: "id_GBJ2Ep8246qas6",
-                  name: "Camiseta Beyond the Limits 3",
-                  price: 7990,
-                  price_id: "f965ba86-4a02-4e22-bf2e-ca47cc34d1a4",
-                  sku: "bdad1f5c-7451-415d-bf81-a542907184ab",
-                  sku_id: "e4533693-f236-4971-8af5-4bede896890c",
+                  id: product.id,
+                  name: product.name,
+                  price: product.priceInCents,
+                  price_id: product.defaultPriceId,
                   currency: "BRL"
                 });
               }}
@@ -57,3 +71,42 @@ export default function Product() {
     </>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: true
+  };
+};
+
+export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
+  params
+}) => {
+  const { id } = params;
+
+  const product = await stripe.products.retrieve(id, {
+    expand: ["default_price"]
+  });
+
+  const price = product.default_price as Stripe.Price;
+
+  const priceFormatted = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  }).format(price.unit_amount / 100);
+
+  return {
+    props: {
+      product: {
+        id: product.id,
+        name: product.name,
+        imageUrl: product.images[0],
+        price: priceFormatted,
+        priceInCents: price.unit_amount,
+        description: product.description,
+        defaultPriceId: price.id
+      }
+    },
+    revalidate: 60 * 60 * 3 // 3 Hours
+  };
+};

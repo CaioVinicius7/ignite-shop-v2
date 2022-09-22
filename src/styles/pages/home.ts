@@ -11,6 +11,7 @@ export const HomeContainer = styled("main", {
 
 export const SliderContainer = styled("section", {
   marginLeft: "0",
+  cursor: "grab",
 
   "@xl": {
     marginLeft: "2rem"
