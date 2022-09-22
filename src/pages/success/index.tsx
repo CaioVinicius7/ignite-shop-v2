@@ -3,6 +3,7 @@ import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
 import Stripe from "stripe";
+import { useShoppingCart } from "use-shopping-cart";
 
 import logo from "../../assets/logo.svg";
 import { stripe } from "../../lib/stripe";
@@ -26,6 +27,8 @@ export default function Success({
   productsQuantity,
   products
 }: SuccessProps) {
+  const { clearCart } = useShoppingCart();
+
   const oneProduct = productsQuantity === 1;
 
   return (
@@ -60,7 +63,9 @@ export default function Success({
           caminho da sua casa.
         </p>
 
-        <Link href="/"> Voltar para o catálogo </Link>
+        <Link href="/" onClick={clearCart}>
+          Voltar para o catálogo
+        </Link>
       </SuccessContainer>
     </>
   );
