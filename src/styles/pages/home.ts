@@ -6,7 +6,11 @@ export const HomeContainer = styled("main", {
   maxWidth: "calc(100vw - ((100vw - 1180px) / 2))",
   marginLeft: "auto",
   minHeight: 656,
-  marginBottom: "1rem"
+  marginBottom: "1rem",
+
+  "@sm": {
+    minHeight: 520
+  }
 });
 
 export const SliderContainer = styled("section", {
