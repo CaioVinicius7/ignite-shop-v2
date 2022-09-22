@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
@@ -10,7 +9,7 @@ import {
   SuccessContainer
 } from "../../styles/pages/success";
 
-const Success: NextPage = () => {
+export default function Success() {
   return (
     <>
       <Head>
@@ -43,6 +42,4 @@ const Success: NextPage = () => {
       </SuccessContainer>
     </>
   );
-};
-
-export default Success;
+}

@@ -155,8 +155,9 @@ export const DetailsContainer = styled("div", {
   },
 
   div: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    display: "flex",
+    gap: "0.2rem",
+    flexDirection: "column",
 
     strong: {
       fontSize: "$md"
@@ -167,8 +168,6 @@ export const DetailsContainer = styled("div", {
       color: "$gray100",
       cursor: "default",
       width: "auto",
-      alignContent: "end",
-      textAlign: "right",
 
       "&:hover": {
         filter: "brightness(1)"

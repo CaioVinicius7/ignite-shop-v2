@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import { useShoppingCart } from "use-shopping-cart";
@@ -11,7 +10,7 @@ import {
   ProductDetails
 } from "../../styles/pages/product";
 
-const Product: NextPage = () => {
+export default function Product() {
   const { addItem } = useShoppingCart();
 
   return (
@@ -57,6 +56,4 @@ const Product: NextPage = () => {
       </>
     </>
   );
-};
-
-export default Product;
+}
