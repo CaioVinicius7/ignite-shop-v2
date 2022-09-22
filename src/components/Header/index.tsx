@@ -1,4 +1,5 @@
 import Image from "next/future/image";
+import Link from "next/link";
 import { Handbag } from "phosphor-react";
 import { useShoppingCart } from "use-shopping-cart";
 
@@ -10,7 +11,9 @@ function Header() {
 
   return (
     <HeaderContainer>
-      <Image src={logo} alt="Logo" />
+      <Link href="/">
+        <Image src={logo} alt="Logo" />
+      </Link>
 
       <CartButton onClick={handleCartClick}>
         {cartCount !== 0 && <span>{cartCount}</span>}
