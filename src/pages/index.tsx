@@ -1,3 +1,4 @@
+import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import type { GetStaticProps } from "next";
 import Image from "next/future/image";
@@ -15,8 +16,7 @@ import {
   Product,
   SliderContainer
 } from "../styles/pages/home";
-
-import "keen-slider/keen-slider.min.css";
+import { formatCurrencyBRL } from "../utils/formatCurrency";
 
 interface HomeProps {
   products: {
@@ -126,16 +126,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const products = response.data.map((product) => {
     const price = product.default_price as Stripe.Price;
 
-    const priceFormatted = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL"
-    }).format(price.unit_amount / 100);
-
     return {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: priceFormatted,
+      price: formatCurrencyBRL(price.unit_amount),
       priceInCents: price.unit_amount,
       defaultPriceId: price.id
     };

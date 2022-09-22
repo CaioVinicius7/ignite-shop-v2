@@ -12,6 +12,7 @@ import {
   ProductContainer,
   ProductDetails
 } from "../../styles/pages/product";
+import { formatCurrencyBRL } from "../../utils/formatCurrency";
 import { SkeletonLoading } from "./components/Skeleton";
 
 interface ProductProps {
@@ -92,18 +93,13 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
 
   const price = product.default_price as Stripe.Price;
 
-  const priceFormatted = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  }).format(price.unit_amount / 100);
-
   return {
     props: {
       product: {
         id: product.id,
         name: product.name,
         imageUrl: product.images[0],
-        price: priceFormatted,
+        price: formatCurrencyBRL(price.unit_amount),
         priceInCents: price.unit_amount,
         description: product.description,
         defaultPriceId: price.id

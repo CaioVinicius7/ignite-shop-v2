@@ -8,7 +8,8 @@ export const SkeletonContainer = styled("main", {
 
   "@md": {
     height: "80vh",
-    padding: "0 1.25rem"
+    padding: "0 1.25rem",
+    margin: "0 auto 9rem"
   }
 });
 
