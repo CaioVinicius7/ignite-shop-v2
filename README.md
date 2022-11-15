@@ -79,7 +79,7 @@ $ yarn dev
 # O projeto ficará ativo na porta:3000 - acesse <http://localhost:3000>
 ```
 
-Obs: Após clonar o repositório crie e preencha o arquivo `.env.local` seguindo o exemplo do arquivo `.env.local`
+Obs: Após clonar o repositório crie e preencha o arquivo `.env.local` seguindo o exemplo do arquivo `.env.example`
 
 <br>
 
